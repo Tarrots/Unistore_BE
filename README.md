@@ -1,4 +1,4 @@
-# React JS and Spring MVC
+# React JS and Spring Boot
 
 ### `Member`
 - Trần Thanh Phong

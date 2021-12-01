@@ -1,6 +1,6 @@
 package com.unistore.server.models;
 
-import javax.persistence.*;
+import javax.persistenzce.*;
 
 @Entity
 @Table(name = "product")

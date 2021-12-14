@@ -14,6 +14,31 @@ public interface ProductRepository extends JpaRepository<Product, Long> {
     @Query(value = "SELECT * from Product ", nativeQuery = true)
     List<Product> findAllProduct();
 
-    @Query(value = "SELECT * from  product LIMIT :offset , :limit", nativeQuery = true)
-    List<Product> findByPage(@Param("limit") int limit, @Param("offset") int offset);
+
+    // show product by search, query, page, limit
+    @Query(value = "SELECT * from  product " +
+                        "WHERE lower(Name) like %:search% " +
+                        "AND lower(Catalog) like %:catalog% " +
+                        "AND lower(Processer) like %:processer% " +
+                        "AND lower(HardDrive) like %:hardDrive% " +
+                        "LIMIT :offset , :limit", nativeQuery = true)
+    List<Product> findByPage(@Param("limit") int limit,
+                             @Param("offset") int offset,
+                             @Param("search") String search,
+                             @Param("catalog") String catalog,
+                             @Param("processer") String processer,
+                             @Param("hardDrive") String hardDrive
+                            );
+
+    // show all products by search, query
+    @Query(value = "SELECT * from  product " +
+                        "WHERE lower(Name) like %:search% " +
+                        "AND lower(Catalog) like %:catalog% " +
+                        "AND lower(Processer) like %:processer% " +
+                        "AND lower(HardDrive) like %:hardDrive% ", nativeQuery = true)
+    List<Product> findByQuery(@Param("search") String search,
+                                @Param("catalog") String catalog,
+                                @Param("processer") String processer,
+                                @Param("hardDrive") String hardDrive
+                            );
 }

@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 import java.util.Optional;
 
+@CrossOrigin(origins = "*", maxAge = 3600)
 @RestController
 @RequestMapping(path = "/api/v1/products")
 public class ProductController {
@@ -20,16 +21,22 @@ public class ProductController {
     private ProductRepository repository;
 
     @GetMapping("")
-    //  This request is: http://localhost:8080/api/v1/Products/
+    //  This request is: http://localhost:8080/api/v1/products/
 //    List<Product> getAllProducts() {
 //        return repository.findAll();
 //    }
     ResponseEntity<ResponseObject> getAllProducts(
             @RequestParam(name = "page", required = false, defaultValue = "1") int page,
-            @RequestParam(name = "limit", required = false, defaultValue = "2") int limit) {
+            @RequestParam(name = "limit", required = false, defaultValue = "6") int limit,
+            @RequestParam(name = "search", required = false, defaultValue = "") String search,
+            @RequestParam(name = "catalog", required = false, defaultValue = "") String catalog,
+            @RequestParam(name = "processer", required = false, defaultValue = "") String processer,
+            @RequestParam(name = "hardDrive", required = false, defaultValue = "") String hardDrive
+    ) {
         int offset = limit * (page - 1);
-        int totalRow = repository.findAll().size();
-        int totalPage = (int) Math.ceil(totalRow / limit);
+        List<Product> foundProducts = repository.findByQuery(search, catalog, processer, hardDrive);
+        int totalRow = foundProducts.size();
+        int totalPage = (int) Math.ceil( (float)totalRow / limit );
         Pagination pagination = new Pagination(page, totalPage, totalRow);
 
         if(page<0 || page>totalPage) {
@@ -38,7 +45,7 @@ public class ProductController {
             );
         }
 
-        List<Product> products = repository.findByPage(limit, offset);
+        List<Product> products = repository.findByPage(limit, offset, search, catalog, processer, hardDrive);
         return ResponseEntity.status(HttpStatus.OK).body(
                 new ResponseObject("ok", "Request all products successfully", products, pagination)
         );

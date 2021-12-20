@@ -1,21 +1,44 @@
 package com.unistore.server.dto;
 
+import org.json.simple.JSONArray;
+
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.Set;
 
 public class OrderRequest {
-    private Set<ProductQuantity> product;
+    private String name;
+
+    private String address;
+
+    private JSONArray product;
 
     private int quantity;
 
     private Double total;
 
-    public Set<ProductQuantity> getProduct() {
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getAddress() {
+        return address;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
+    }
+
+
+    public JSONArray getProduct() {
         return product;
     }
 
-    public void setProduct(Set<ProductQuantity> product) {
+    public void setProduct(JSONArray product) {
         this.product = product;
     }
 

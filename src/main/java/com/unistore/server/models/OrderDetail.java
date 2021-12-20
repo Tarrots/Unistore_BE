@@ -17,7 +17,7 @@ public class OrderDetail {
 
     private int quantity;
 
-    private Double unit_price;
+    private Double product_price;
 
     private Double total;
 
@@ -27,7 +27,7 @@ public class OrderDetail {
         this.order_id = order_id;
         this.product_id = product_id;
         this.quantity = quantity;
-        this.unit_price = unit_price;
+        this.product_price = unit_price;
         this.total = total;
     }
 
@@ -63,12 +63,12 @@ public class OrderDetail {
         this.quantity = quantity;
     }
 
-    public Double getUnit_price() {
-        return unit_price;
+    public Double getProduct_price() {
+        return product_price;
     }
 
-    public void setUnit_price(Double unit_price) {
-        this.unit_price = unit_price;
+    public void setProduct_price(Double product_price) {
+        this.product_price = product_price;
     }
 
     public Double getTotal() {

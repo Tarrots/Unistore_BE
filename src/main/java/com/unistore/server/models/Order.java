@@ -23,20 +23,22 @@ public class Order {
 
     private String address;
 
-    private Date purchase_date;
+    private String purchase_date;
 
-    private Date received_date;
+    private String received_date;
 
 
     public Order() {}
 
-    public Order(Long user_id, String name, int quantity, Double total, String status, String address) {
+    public Order(Long user_id, String name, int quantity, Double total, String status, String address, String purchase_date, String received_date) {
         this.user_id = user_id;
         this.name = name;
         this.status = status;
         this.quantity = quantity;
         this.total = total;
         this.address = address;
+        this.purchase_date = purchase_date;
+        this.received_date = received_date;
     }
 
     public Long getId() {
@@ -87,19 +89,19 @@ public class Order {
         this.total = total;
     }
 
-    public Date getPurchase_date() {
+    public String getPurchase_date() {
         return purchase_date;
     }
 
-    public void setPurchase_date(Date purchase_date) {
+    public void setPurchase_date(String purchase_date) {
         this.purchase_date = purchase_date;
     }
 
-    public Date getReceived_date() {
+    public String getReceived_date() {
         return received_date;
     }
 
-    public void setReceived_date(Date received_date) {
+    public void setReceived_date(String received_date) {
         this.received_date = received_date;
     }
 

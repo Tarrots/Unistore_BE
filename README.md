@@ -1,7 +1,6 @@
-# Unistore_BE
-Spring Boot
+# React JS and Spring MVC
 
-Member
-Trần Thanh Phong
-Đặng Văn Linh
-Đặng Thị Kiều Oanh
+### `Member`
+- Trần Thanh Phong
+- Đặng Văn Linh
+- Đặng Thị Kiều Oanh
